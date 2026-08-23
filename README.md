@@ -2,11 +2,11 @@
 
 An authority-aware RAG-based customer support assistant with structured data tools, document retrieval, access control, and proactive issue detection.
 
-## 🚀 Live Demo
+## Live Demo
 
-👉 **[Click here to try the ParcelPilot AI Agent](https://parcelpilot-ai-agent-8ghaeogsg8ofnbgpgh2bhl.streamlit.app)**
+ **[Click here to try the ParcelPilot AI Agent](https://parcelpilot-ai-agent-8ghaeogsg8ofnbgpgh2bhl.streamlit.app)**
 
-## 📌 Project Overview
+##  Project Overview
 
 ParcelPilot AI Agent is an AI-powered support assistant designed to answer customer and internal support queries using structured data and authoritative documents.
 
@@ -20,16 +20,16 @@ The system is designed to retrieve the appropriate evidence before generating an
 - Historical support information as non-authoritative context
 - Proactive issue detection
 
-## ✨ Key Features
+##  Key Features
 
-### 🔐 Access Control
+### Access Control
 Implements a simple role-based access control (RBAC) model.
 
 - Support agents can access all accounts.
 - Customers can access only their authorized account.
 - Account-level access is checked before accessing protected information.
 
-### 📊 Structured Data Tools
+### Structured Data Tools
 The application can retrieve and analyze:
 
 - Account information
@@ -41,7 +41,7 @@ The application can retrieve and analyze:
 - Failed pickup timing
 - Dataset snapshot information
 
-### 📄 Authority-Aware Document Retrieval
+### Authority-Aware Document Retrieval
 
 The system follows an evidence hierarchy:
 
@@ -50,7 +50,7 @@ The system follows an evidence hierarchy:
 3. Historical support information as non-authoritative context
 4. Deprecated documents only when explicitly requested
 
-### 🤖 RAG-Based Document Search
+###  RAG-Based Document Search
 
 The document pipeline includes:
 
