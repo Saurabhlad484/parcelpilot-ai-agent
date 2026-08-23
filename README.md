@@ -29,6 +29,43 @@ Implements a simple role-based access control (RBAC) model.
 - Customers can access only their authorized account.
 - Account-level access is checked before accessing protected information.
 
+## 💡 Sample Questions
+
+Try asking the ParcelPilot AI Agent questions like:
+
+### 📦 Order & Account Queries
+- What is the status of order ORD-1001?
+- Who is the account owner for order ORD-1001?
+- Show me all orders for account ACCT-001.
+- Show me the support tickets for account ACCT-002.
+- What information do we have for ticket TKT-502?
+
+### ❌ Cancellation Queries
+- Can ORD-1001 be cancelled without a fee?
+- What are the cancellation terms for ACCT-001?
+- How long after booking was the cancellation requested for ORD-1001?
+
+### 🚚 Failed Pickup & Service Credit
+- Does ORD-2002 qualify for a service credit after a failed pickup?
+- How long has ORD-2002 remained without pickup?
+- What are the failed pickup service credit terms for ACCT-002?
+
+### ⏱️ Support SLA Queries
+- What is the P1 response target?
+- What are the current support response targets?
+- Does ACCT-001 have a custom support SLA?
+
+### 🛠️ Product & Known Issues
+- What is the bulk upload limit?
+- Why does TKT-502 fail when uploading a 4200-row CSV?
+- Is there a known issue related to SwiftShip webhook confirmation delays?
+
+### 🔍 Proactive Issue Detection
+- Show me the current open support issues.
+- Are there any recurring customer issues?
+- Are there similar issues affecting multiple customers?
+- Show me any unusual support patterns.
+
 ### Structured Data Tools
 The application can retrieve and analyze:
 
