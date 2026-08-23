@@ -19,12 +19,18 @@ Provides two interfaces:
    - Unusual support patterns
    - Historical resolution risks
    - Proactive issue summary
+
+The application automatically initializes the document collection when
+the deployed environment starts with an empty ChromaDB database.
 """
 
 import streamlit as st
 
 from src.agent import run_agent
 from src.tools import get_proactive_issue_summary
+from src.document_processor import process_all_documents
+from src.document_chunker import chunk_all_documents
+from src.document_store import get_collection, index_chunks
 
 
 # ---------------------------------------------------------------------
@@ -36,6 +42,68 @@ st.set_page_config(
     page_icon="📦",
     layout="centered",
 )
+
+
+# ---------------------------------------------------------------------
+# Document collection initialization
+# ---------------------------------------------------------------------
+
+@st.cache_resource
+def initialise_document_collection() -> dict:
+    """
+    Ensure the ChromaDB document collection is ready.
+
+    On a fresh deployment, the local ChromaDB collection may be empty.
+    In that case, process the project PDFs, create chunks, generate
+    embeddings, and index them before the AI agent performs retrieval.
+
+    Streamlit caches this resource so the initialization does not run
+    again on every application rerun.
+    """
+
+    collection = get_collection()
+
+    # Collection already contains indexed documents.
+    if collection.count() > 0:
+        return {
+            "status": "ready",
+            "collection_count": collection.count(),
+            "indexed": False,
+        }
+
+    # Fresh deployment: build the document collection.
+    documents = process_all_documents()
+
+    chunks = chunk_all_documents(documents)
+
+    report = index_chunks(chunks)
+
+    return {
+        "status": "ready",
+        "collection_count": report["collection_count"],
+        "indexed": True,
+        "documents_processed": len(documents),
+        "chunks_created": len(chunks),
+    }
+
+
+# ---------------------------------------------------------------------
+# Initialize document retrieval system
+# ---------------------------------------------------------------------
+
+try:
+
+    document_status = initialise_document_collection()
+
+except Exception as error:
+
+    st.error(
+        "Unable to initialise the ParcelPilot document retrieval system."
+    )
+
+    st.exception(error)
+
+    st.stop()
 
 
 # ---------------------------------------------------------------------
